@@ -11,18 +11,31 @@
 
 @implementation NativeSettings
 
+- (void)openScheme:(NSString *)scheme {
+
+    UIApplication *application = [UIApplication sharedApplication];
+    NSURL *URL = [NSURL URLWithString:scheme];
+
+    if ([application respondsToSelector:@selector(openURL:options:completionHandler:)]) {
+        [application openURL:URL options:@{} completionHandler:^(BOOL success) {
+            NSLog(@"Open %@: %d",scheme,success);
+        }];
+    } else {
+        BOOL success = [application openURL:URL];
+        NSLog(@"Open %@: %d",scheme,success);
+    }
+}
+
 - (void)open:(CDVInvokedUrlCommand*)command
 {
-        if (&UIApplicationOpenSettingsURLString != NULL) {
-            NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-            [[UIApplication sharedApplication] openURL:appSettings];
-        }
+    if (&UIApplicationOpenSettingsURLString != NULL) {
+        [self openScheme:UIApplicationOpenSettingsURLString];
+    }
 }
 
 - (void)openLocation:(CDVInvokedUrlCommand*)command
 {
-    NSURL *locationSettings = [NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"];
-    [[UIApplication sharedApplication] openURL:locationSettings];
+    [self openScheme:@"prefs:root=LOCATION_SERVICES"];
 }
 
 @end
