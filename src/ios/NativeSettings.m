@@ -12,10 +12,10 @@
 @implementation NativeSettings
 
 - (void)openScheme:(NSString *)scheme {
-
+    
     UIApplication *application = [UIApplication sharedApplication];
     NSURL *URL = [NSURL URLWithString:scheme];
-
+    
     if ([application respondsToSelector:@selector(openURL:options:completionHandler:)]) {
         [application openURL:URL options:@{} completionHandler:^(BOOL success) {
             NSLog(@"Open %@: %d",scheme,success);
@@ -28,14 +28,16 @@
 
 - (void)open:(CDVInvokedUrlCommand*)command
 {
-    if (&UIApplicationOpenSettingsURLString != NULL) {
-        [self openScheme:UIApplicationOpenSettingsURLString];
-    }
+    [self openScheme:UIApplicationOpenSettingsURLString];
 }
 
 - (void)openLocation:(CDVInvokedUrlCommand*)command
 {
-    [self openScheme:@"prefs:root=LOCATION_SERVICES"];
+    if ([[[UIDevice currentDevice] systemVersion] intValue] < 10) {
+        [self openScheme:@"prefs:root=LOCATION_SERVICES"];
+    } else {
+        [self openScheme:UIApplicationOpenSettingsURLString];
+    }
 }
 
 @end
