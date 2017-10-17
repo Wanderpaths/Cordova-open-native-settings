@@ -1,33 +1,33 @@
 {
-name: "ImagePicker",
-version: "0.2.0",
-description: "Native settings opener for Cordova 3.0",
-cordova: {
-id: "com.phonegap.plugins.nativesettingsopener",
-platforms: [
+"name": "Cordova-open-native-settings",
+"version": "0.2.0",
+"description": "Native settings opener for Cordova 3.0",
+"cordova": {
+"id": "com.phonegap.plugins.nativesettingsopener",
+"platforms": [
 "ios",
 "android"
 ]
 },
-repository: {
-type: "git",
-url: "git+https://github.com/Wanderpaths/Cordova-open-native-settings.git"
+"repository": {
+"type": "git",
+"url": "git+https://github.com/Wanderpaths/Cordova-open-native-settings.git"
 },
-keywords: [
+"keywords": [
 "ecosystem:cordova",
 "cordova-ios",
 "cordova-android"
 ],
-engines: [
+"engines": [
 {
-name: "cordova",
-version: ">=5.0.0"
+"name": "cordova",
+"version": ">=5.0.0"
 }
 ],
-author: "deefactorial",
-license: "MIT",
-bugs: {
-url: "https://github.com/Wanderpaths/Cordova-open-native-settings.git"
+"author": "deefactorial",
+"license": "MIT",
+"bugs": {
+"url": "https://github.com/Wanderpaths/Cordova-open-native-settings.git"
 },
-homepage: "https://github.com/Wanderpaths/Cordova-open-native-settings.git"
+"homepage": "https://github.com/Wanderpaths/Cordova-open-native-settings.git"
 }
