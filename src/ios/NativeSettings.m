@@ -33,11 +33,15 @@
 
 - (void)openLocation:(CDVInvokedUrlCommand*)command
 {
-    if ([[[UIDevice currentDevice] systemVersion] intValue] < 10) {
-        [self openScheme:@"prefs:root=LOCATION_SERVICES"];
-    } else {
+    // iOS ISSUE: Your app uses the "prefs:root=" non-public URL scheme, which is a private entity.
+    // To resolve this issue, please revise your app to provide the associated 
+    // functionality using public APIs or remove the functionality using the "prefs:root" or "App-Prefs:root" URL scheme.
+
+    // if ([[[UIDevice currentDevice] systemVersion] intValue] < 10) {
+    //     [self openScheme:@"prefs:root=LOCATION_SERVICES"];
+    // } else {
         [self openScheme:UIApplicationOpenSettingsURLString];
-    }
+    // }
 }
 
 @end
